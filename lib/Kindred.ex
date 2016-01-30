@@ -3,7 +3,6 @@ use HTTPoison.Base
   @moduledoc """
   Base module for Kindred which handles the requests and parsing the responses
   """
-  @user_agent [{"User-agent", "Kindred"}]
 
   def new(client) do
     Agent.start_link(fn -> client end, name: __MODULE__)
@@ -17,8 +16,7 @@ use HTTPoison.Base
   defp parse_response(response) do
     status_code = response.status_code
     body = response.body
-    IO.puts response.headers["Content-Type"]
-    if (response.headers["Content-Type"] == "application/json; charset=UTF-8" and status_code != 404) do
+    if (get_header(response.headers, "Content-Type") == "application/json; charset=UTF-8" and status_code != 404) do
       response = Poison.decode!(body)
       {:ok, response}
     else
@@ -46,5 +44,11 @@ use HTTPoison.Base
   end
   defp json_request(method, url) do
     request!(method, url) |> parse_response
+  end
+  defp get_header(headers, key) do
+    headers
+    |> Enum.filter(fn({k, _}) -> k == key end)
+    |> hd
+    |> elem(1)
   end
 end

@@ -8,7 +8,7 @@
 
 **Still being worked on heavily, things will probably change as the rest of the api is implemented**
 
-###Missing features
+###Working Features
 
 Currently only the following endpoints are added:
 
