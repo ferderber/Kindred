@@ -7,7 +7,7 @@ use HTTPoison.Base
     Agent.start_link(fn -> client end, name: __MODULE__)
   end
   def get(path) do
-    Agent.get(__MODULE__, fn client -> request(client, path) end, 15_000)
+    Agent.get(__MODULE__, fn client -> request(client, path) end, 30_000)
   end
   @type response :: {integer, any} | :jsx.json_term
   @spec parse_response(HTTPoison.Response.t) :: response

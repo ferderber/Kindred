@@ -3,7 +3,7 @@ defmodule RateTest do
   import Kindred.Champion
   doctest Kindred.Champion
   test "10 requests with rate limiter" do
-    r = recurseRequest(10)
+    r = recurseRequest(5)
     assert ({:ok, _} = r)
 
   end
