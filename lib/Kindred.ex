@@ -3,11 +3,9 @@ use HTTPoison.Base
   @moduledoc """
   Base module for Kindred which handles the requests and parsing the responses
   """
-
   def new(client) do
     Agent.start_link(fn -> client end, name: __MODULE__)
   end
-
   def get(path) do
     Agent.get(__MODULE__, fn client -> request(client, path) end, 15_000)
   end

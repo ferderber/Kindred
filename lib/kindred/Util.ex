@@ -1,7 +1,4 @@
 defmodule Kindred.Util do
-  defp url(summonerId) do
-    "#{@version}/game/by-summoner/#{summonerId}/recent"
-  end
   def get_platform(region) do
     case region do
       :NA ->"NA1"
@@ -16,5 +13,8 @@ defmodule Kindred.Util do
       :RU -> "RU"
       :PBE -> "PBE1"
     end
+  end
+  def add_region(url, region) do
+    String.replace(url,"region", region)
   end
 end

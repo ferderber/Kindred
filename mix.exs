@@ -23,7 +23,8 @@ defmodule Kindred.Mixfile do
   defp deps do
     [{:httpoison, "~> 0.8.1"},
     { :poison, "~> 2.0.1" },
-    { :ex_doc, "~> 0.11.0", only: :docs},
+    { :ex_doc, "~> 0.11.0", only: :dev},
+    {:earmark, ">= 0.0.0", only: :dev},
     {:ex_rated, "~> 1.2.1"}]
   end
   defp package do
